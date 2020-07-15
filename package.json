@@ -12,7 +12,15 @@
   },
   "dependencies": {
     "ejs": "^2.5.6",
-    "express": "^4.15.2"
+    "axios": "^0.19.2",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "moment": "^2.27.0",
+    "morgan": "~1.9.1",
+    "nconf": "^0.10.0",
+    "strong-soap": "^2.0.0",
+    "telebot": "^1.4.1"
   },
   "devDependencies": {
     "got": "^11.3.0",
