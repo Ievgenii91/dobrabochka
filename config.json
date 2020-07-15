@@ -6,6 +6,6 @@
   "SMS_SENDER_NAME": "DobraBochka",
   "SMS_TEMPLATE": "ДубВироби. ТТН ::invoiceNumber.Дякуємо за покупку!",
   "NP_API_GET_INVOICES": "https://api.novaposhta.ua/v2.0/json/getDocumentList",
-  "NP_API_KEY": "5202cef274fdb599aea4fc854e838945",
+  "NP_API_KEY": "04fef62f01f500d26102b73be1238bc6",
   "TELEGRAM_BOT_TOKEN": "1279819226:AAH21878c_XARFS90xY32daEtdvD0BQdAxk"
 }
