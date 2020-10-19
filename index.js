@@ -7,6 +7,8 @@ nconf.argv()
     .env()
     .file({ file: 'config.json' });
 
+const bot = require('./bot')()
+
 express()
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: false }))
@@ -17,11 +19,12 @@ express()
   .post('/woo', (req, res) => {
     console.log('POST body', JSON.stringify(req.body))
     console.log('POST headers', JSON.stringify(req.headers))
-    return res.status(200).send({ ok: true, post: req.body })
-  })  
-  .post('/action', (req, res) => {
-    console.log('POST body', JSON.stringify(req.body))
-    console.log('POST headers', JSON.stringify(req.headers))
+    try {
+        bot.sendMessage(-1001491303154, 'tst')
+    } catch (e) {
+        console.error(e)
+    }
+
     return res.status(200).send({ ok: true, post: req.body })
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
