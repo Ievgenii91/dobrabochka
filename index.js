@@ -7,8 +7,6 @@ nconf.argv()
     .env()
     .file({ file: 'config.json' });
 
-require('./bots')
-
 express()
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: false }))
