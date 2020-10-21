@@ -5,12 +5,10 @@ const soap = require('../services/soap')
 const npService = require('../services/novaPoshta')
 const InvoiceModel = require('../models/invoice')
 const moment = require('moment');
-let bot = null
-module.exports = (expressApp) => {
-    if(bot) {
-        return bot
-    }
-    bot = new TeleBot(TELEGRAM_BOT_TOKEN);
+
+module.exports = () => {
+
+    const bot = new TeleBot(TELEGRAM_BOT_TOKEN);
 
     bot.on(['/start'], (msg) => msg.reply.text(
         `Привіт людинко! Я тут, щоб допомгти тобі відправити смс до твоїх замовників. \n
