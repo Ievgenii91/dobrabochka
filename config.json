@@ -3,7 +3,7 @@
   "SMS_URL": "http://turbosms.in.ua/api/wsdl.html",
   "SMS_LOGIN": "admin_crashraze",
   "SMS_PASS": "Portal123@@@",
-  "SMS_SENDER_NAME": "DobraBochka",
+  "SMS_SENDER_NAME": "DubVyroby",
   "SMS_TEMPLATE": "ДубВироби. ТТН ::invoiceNumber.Дякуємо за покупку!",
   "NP_API_GET_INVOICES": "https://api.novaposhta.ua/v2.0/json/getDocumentList",
   "NP_API_KEY": "04fef62f01f500d26102b73be1238bc6",

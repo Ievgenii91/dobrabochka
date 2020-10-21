@@ -7,7 +7,7 @@ nconf.argv()
     .env()
     .file({ file: 'config.json' });
 
-const bot = require('./bot')()
+require('./bots')
 
 express()
   .use(bodyParser.json())
@@ -19,11 +19,11 @@ express()
   .post('/woo', (req, res) => {
     console.log('POST body', JSON.stringify(req.body))
     console.log('POST headers', JSON.stringify(req.headers))
-    try {
-        bot.sendMessage(-1001491303154, 'tst')
-    } catch (e) {
-        console.error(e)
-    }
+    // try {
+    //     bot().sendMessage(-1001491303154, 'tst')
+    // } catch (e) {
+    //     console.error(e)
+    // }
 
     return res.status(200).send({ ok: true, post: req.body })
   })
