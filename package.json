@@ -21,7 +21,7 @@
     "morgan": "~1.9.1",
     "nconf": "^0.10.0",
     "strong-soap": "^2.0.0",
-    "telebot": "^1.4.1"
+    "telegraf": "^3.38.0"
   },
   "devDependencies": {
     "got": "^11.3.0",

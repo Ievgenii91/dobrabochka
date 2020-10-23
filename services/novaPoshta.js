@@ -10,7 +10,7 @@ const headers = {
 class NovaPoshta {
 
     async getInvoices(from, to) {
-        const apiKey = nconf.get('NP_API_KEY');
+        const apiKey = process.env.NP_API_KEY
         const methodProperties = {
             GetFullList: 1
         };
