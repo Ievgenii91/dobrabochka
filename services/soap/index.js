@@ -1,5 +1,4 @@
 const soap = require('strong-soap').soap;
-const nconf = require('nconf');
 
 const enums = {
     received: 'Сообщение доставлено получателю',
@@ -8,7 +7,7 @@ const enums = {
     okSmsSent: 'Сообщения успешно отправлены'
 };
 
-const url =  process.env.SMS_URL || nconf.get('SMS_URL');
+const url = 'http://turbosms.in.ua/api/wsdl.html';
 let SOAPClient = null;
 
 async function createClient() {

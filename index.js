@@ -1,12 +1,10 @@
+require('dotenv').config()
 const express = require('express')
 const path = require('path')
-const nconf = require('nconf');
 const PORT = process.env.PORT || 5000
 const bodyParser = require('body-parser')
 const initBot = require('./bot')
-nconf.argv()
-    .env()
-    .file({ file: 'config.json' });
+
 let app = express();
 
 async function init() {
@@ -32,11 +30,11 @@ async function init() {
         .post('/woo', (req, res) => {
             console.log('POST body', JSON.stringify(req.body))
             console.log('POST headers', JSON.stringify(req.headers))
-            // try {
-            //     bot().sendMessage(-1001491303154, 'tst')
-            // } catch (e) {
-            //     console.error(e)
-            // }
+            try {
+                bot.sendMessage(-1001491303154, JSON.stringify(req.body))
+            } catch (e) {
+                console.error(e)
+            }
 
             return res.status(200).send({ok: true, post: req.body})
         })

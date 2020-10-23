@@ -1,4 +1,0 @@
-{
-  "SMS_URL": "http://turbosms.in.ua/api/wsdl.html",
-  "NP_API_GET_INVOICES": "https://api.novaposhta.ua/v2.0/json/getDocumentList"
-}

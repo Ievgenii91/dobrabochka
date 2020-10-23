@@ -1,8 +1,7 @@
 const axios = require('axios');
 const moment = require('moment');
-const nconf = require('nconf');
 
-const NP_API = nconf.get('NP_API_GET_INVOICES');
+const NP_API = 'https://api.novaposhta.ua/v2.0/json/getDocumentList'
 const headers = {
     'Content-Type': 'application/json'
 };
