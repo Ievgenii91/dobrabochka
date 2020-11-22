@@ -79,8 +79,11 @@ module.exports = () => {
             return reply(`${e.message}`)
         }
         console.log(invoices)
+        let date = new Date();
+        date.setDate(date.getDate() - 1);
+
         const todaysInvoices = await db.collection('invoices').find({
-            date: new Date().toISOString()
+            date: { $lt: new Date().toISOString(), $gt: date.toDateString() }
         }).toArray()
         if(todaysInvoices.length) {
             return reply(`Сьогодні вже були відправлені декларації ${todaysInvoices.map(v => v.invoice).join(',')}`)
