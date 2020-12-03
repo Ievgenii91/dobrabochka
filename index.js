@@ -29,10 +29,13 @@ async function init() {
 
     app.get('/', (req, res) => res.render('pages/index'))
         .post('/woo', (req, res) => {
-            console.log('POST body', JSON.stringify(req.body))
-            console.log('POST headers', JSON.stringify(req.headers))
+            const { customer_note, billing, payment_method_title, line_items } = req.body;
             try {
-                bot.telegram.sendMessage(telegramChatId, JSON.stringify(req.body))
+                let items = line_items.map(v => {
+                    return `\n${v.name} К-во: ${v.quantity}, цена: ${v.price}`
+                })
+                items += `\nВсего: ${line_items[0].total}`;
+                bot.telegram.sendMessage(telegramChatId, `ФИО: ${billing.first_name + ' ' + billing.last_name}\nАдреса: ${billing.address_1} ${billing.city} ${billing.state}\nemail: ${billing.email}\nТелефон: ${billing.phone}\nДоставка: ${payment_method_title}\nЗаметка: ${customer_note}\n${items}`);
             } catch (e) {
                 console.error(e)
             }
