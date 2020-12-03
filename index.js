@@ -29,13 +29,13 @@ async function init() {
 
     app.get('/', (req, res) => res.render('pages/index'))
         .post('/woo', (req, res) => {
-            const { customer_note, billing, payment_method_title, line_items } = req.body;
+            const { customer_note, billing, payment_method_title, line_items, id } = req.body;
             try {
                 let items = line_items.map(v => {
-                    return `\n${v.name} К-во: ${v.quantity}, цена: ${v.price}`
+                    return `\n${v.name} К-во: ${v.quantity} шт., Цена: ${v.price} грн`
                 })
-                items += `\nВсего: ${line_items[0].total}`;
-                bot.telegram.sendMessage(telegramChatId, `ФИО: ${billing.first_name + ' ' + billing.last_name}\nАдреса: ${billing.address_1} ${billing.city} ${billing.state}\nemail: ${billing.email}\nТелефон: ${billing.phone}\nДоставка: ${payment_method_title}\nЗаметка: ${customer_note}\n${items}`);
+                items += `\nВсего: ${line_items[0].total} грн`;
+                bot.telegram.sendMessage(telegramChatId, `ЗАКАЗ #${id}\nФИО: ${billing.first_name + ' ' + billing.last_name}\nАдреса: ${billing.address_1} | ${billing.city} | ${billing.state} обл.\nemail: ${billing.email}\nТелефон: ${billing.phone}\nПлатежный метод: ${payment_method_title}\nЗаметка: ${customer_note}\n${items}`);
             } catch (e) {
                 console.error(e)
             }
