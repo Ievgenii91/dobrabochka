@@ -10,3 +10,12 @@ npm-debug.log
 # Docker
 Dockerfile
 docker-compose.yml
+.idea/codeStyles/codeStyleConfig.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/dobrabochka_bot.iml
+.idea/dobrabochka.iml
+.idea/jsLibraryMappings.xml
+.idea/misc.xml
+/.idea

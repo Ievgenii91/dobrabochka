@@ -3,6 +3,7 @@ const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 const bodyParser = require('body-parser')
+const cors = require('cors');
 const initBot = require('./bot')
 
 let app = express();
@@ -55,6 +56,24 @@ async function init() {
             }
 
             return res.status(200).send({ok: true, post: req.body})
+        })
+        .post('/api/woo-test', cors(), (req, res, next) => {
+            if(!req.body) {
+                return next();
+            }
+            console.log(req.body, 'body log /api/message-test');
+            const { customer_note, billing, payment_method_title, line_items, id } = req.body;
+            try {
+                let items = line_items.map(v => {
+                    return `\n${v.name} К-во: ${v.quantity} шт., Цена: ${v.price} грн`
+                })
+                items += `\nВсего: ${line_items[0].total} грн`;
+                bot.telegram.sendMessage(telegramChatId, `ЗАКАЗ #${id}\nФИО: ${billing.first_name + ' ' + billing.last_name}\nАдреса: ${billing.address_1} | ${billing.city} | ${billing.state} обл.\nemail: ${billing.email}\nТелефон: ${billing.phone}\nПлатежный метод: ${payment_method_title}\nЗаметка: ${customer_note}\n${items}`);
+            } catch (e) {
+                console.error(e)
+            }
+
+            return res.status(200).send({ok: true, post: req.body});            
         })
         .post('/api/anyMessage', (req, res, next) => {
             try {
