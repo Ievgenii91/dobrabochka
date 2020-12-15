@@ -27,6 +27,8 @@ async function init() {
     } else {
         await bot.launch()
     }
+    
+    app.options('/api/woo-test', cors());
 
     app.get('/', (req, res) => res.render('pages/index'))
         .post('/woo', (req, res) => {
