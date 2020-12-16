@@ -77,7 +77,7 @@ async function init() {
                     return `\n${v.name}, ${v.price} грн`
                 })
                 items += `\nВсего: ${total} грн`;
-                let message = `ЗАКАЗ #${id}\nФИО: ${billing_first_name + ' ' + billing_last_name}\nАдреса: ${billing_address_1} | ${billing_city} | ${billing_state} обл.\nemail: ${billing.email}\nТелефон: ${billing_phone}\nПлатежный метод: ${payment_method_title}\nЗаметка: ${customer_note || order_comments}\n${items}`;
+                let message = `ЗАКАЗ #${id}\nФИО: ${billing_first_name + ' ' + billing_last_name}\nАдреса: ${billing_address_1} | ${billing_city} | ${billing_state} обл.\nemail: ${billing_email}\nТелефон: ${billing_phone}\nПлатежный метод: ${payment_method_title}\nЗаметка: ${customer_note || order_comments}\n${items}`;
                 if(wcus_np_shipping_area || wcus_np_shipping_city) {
                     message += `\nНова Пошта: ${wcus_np_shipping_area}  ${wcus_np_shipping_city}  ${wcus_np_shipping_warehouse}  ${wcus_np_shipping_custom_address}`
                 }
