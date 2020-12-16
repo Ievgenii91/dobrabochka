@@ -31,7 +31,7 @@ async function init() {
     let originOptions = {
         origin: process.env.ALLOWED_CORS_ORIGIN,
     };
-    app.options('/api/woo-test', cors(originOptions));
+    app.options('/api/onAddOrder', cors(originOptions));
 
     app.get('/', (req, res) => res.render('pages/index'))
         .post('/woo', (req, res) => {
@@ -62,12 +62,13 @@ async function init() {
 
             return res.status(200).send({ok: true, post: req.body})
         })
-        .post('/api/onAddOrder', cors(originOptions), (req, res, next) => {
-            console.log('onAddOrder triggered');
+        .post('/api/onAddOrder', cors(originOptions), (req, res, next) => {            
             if(!req.body) {
                 return next();
             }            
             const { customer_note, billing, payment_method_title, line_items, id, total } = req.body;
+            console.log('onAddOrder triggered', line_items);
+            console.log(JSON.stringify(req.body), 'BODY');
             try {
                 let items = line_items.map(v => {
                     return `\n${v.name}, ${v.price} грн`
