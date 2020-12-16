@@ -68,7 +68,7 @@ async function init() {
             }            
             const { customer_note, 
                 order_comments, billing_first_name, billing_last_name, payment_method_title, 
-                billing_phone, line_items, id, total, billing_city, billing_address_1, billing_state,
+                billing_phone, line_items, id, total, billing_city, billing_address_1, billing_state, billing_email,
                 wcus_np_shipping_area, wcus_np_shipping_city,  wcus_np_shipping_warehouse, wcus_np_shipping_custom_address
 
             } = req.body;            
