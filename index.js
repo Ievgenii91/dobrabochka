@@ -66,20 +66,19 @@ async function init() {
             if(!req.body) {
                 return next();
             }            
-            const { customer_note, 
-                order_comments, billing_first_name, billing_last_name, payment_method_title, 
-                billing_phone, line_items, total, billing_city, billing_address_1, billing_state, billing_email,
-                wcus_np_shipping_area, wcus_np_shipping_city,
+            const { 
+                order_comments, billing_first_name, billing_last_name, payment_method, 
+                billing_phone, line_items, total, billing_email,
+                wcus_np_billing_area, wcus_np_billing_city,
                 np_state, np_city, np_warehouse, np_custom
-
             } = req.body;            
             try {
                 let items = JSON.parse(`{"line_items":${line_items}}`).line_items.map(v => {
                     return `\n${v.name}, ${v.price} грн`
                 })
                 items += `\nВсего: ${total} грн`;
-                let message = `ФИО: ${billing_first_name + ' ' + billing_last_name}\nАдреса: ${billing_address_1} | ${billing_city} | ${billing_state} обл.\nemail: ${billing_email}\nТелефон: ${billing_phone}\nПлатежный метод: ${payment_method_title}\nЗаметка: ${customer_note || order_comments}\n${items}`;
-                if(wcus_np_shipping_area || wcus_np_shipping_city) {
+                let message = `ФИО: ${billing_first_name + ' ' + billing_last_name}\nemail: ${billing_email}\nТелефон: ${billing_phone}\nПлатежный метод: ${payment_method}\nЗаметка: ${order_comments}\n${items}`;
+                if(wcus_np_billing_area || wcus_np_billing_city) {
                     message += `\nНова Пошта: ${np_state}  ${np_city}  ${np_warehouse}  ${np_custom || ''}`
                 }
                 bot.telegram.sendMessage(telegramChatId, message);
