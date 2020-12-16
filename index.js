@@ -66,11 +66,9 @@ async function init() {
             if(!req.body) {
                 return next();
             }            
-            const { customer_note, billing, payment_method_title, line_items, id, total } = req.body;
-            console.log('onAddOrder triggered', line_items);
-            console.log(JSON.stringify(req.body), 'BODY');
+            const { customer_note, billing, payment_method_title, line_items, id, total } = req.body;            
             try {
-                let items = line_items.map(v => {
+                let items = JSON.parse(line_items).map(v => {
                     return `\n${v.name}, ${v.price} грн`
                 })
                 items += `\nВсего: ${total} грн`;
