@@ -63,6 +63,7 @@ async function init() {
             return res.status(200).send({ok: true, post: req.body})
         })
         .post('/api/onAddOrder', cors(originOptions), (req, res, next) => {
+            console.log('onAddOrder triggered');
             if(!req.body) {
                 return next();
             }            
