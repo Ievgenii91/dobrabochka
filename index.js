@@ -7,14 +7,9 @@ const cors = require('cors');
 const initBot = require('./bot')
 
 let app = express();
-const telegramChatId = -1001491303154;
+const telegramChatId = parseInt(process.env.CHAT_ID);
 
 async function init() {
-    app.use(bodyParser.json())
-        .use(bodyParser.urlencoded({extended: false}))
-        .use(express.static(path.join(__dirname, 'public')))
-        .set('views', path.join(__dirname, 'views'))
-        .set('view engine', 'ejs')
 
     const bot = initBot()
     const info = await bot.telegram.getWebhookInfo()
@@ -27,6 +22,13 @@ async function init() {
     } else {
         await bot.launch()
     }
+
+    app
+        .use(bodyParser.json())
+        .use(bodyParser.urlencoded({extended: false}))
+        .use(express.static(path.join(__dirname, 'public')))
+        .set('views', path.join(__dirname, 'views'))
+        .set('view engine', 'ejs')
     
     let originOptions = {
         origin: process.env.ALLOWED_CORS_ORIGIN,
@@ -53,6 +55,14 @@ async function init() {
                 return next();
             }
             const { name, phone, question, url } = req.body;
+            if(!isFormDataValid(name, phone, question)) {
+                console.warn('Not valid input', name, phone);
+                return next();
+            }
+            function isFormDataValid() {
+                const exceptions = ['henry', 'mike', 'заработок', 'http', 'viagra'];
+                return !Array.from(arguments).filter(v=>exceptions.filter(data=>(v?.toLowerCase().indexOf(data) > -1)).length > 0).length;
+            }            
             try {
                 bot.telegram.sendMessage(telegramChatId,
                     `CALLBACK!\nИмя: ${name || ''}\nТелефон: ${phone || ''}\nВопрос: ${question || ''}\nUrL:${url || ''}`)
