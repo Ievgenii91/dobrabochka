@@ -59,9 +59,9 @@ async function init() {
                 console.warn('Not valid input', name, phone);
                 return next();
             }
-            function isFormDataValid() {
+            function isFormDataValid(name = '', phone = '', question = '') {
                 const exceptions = ['henry', 'mike', 'заработок', 'http', 'viagra'];
-                return !Array.from(arguments).filter(v=>exceptions.filter(data=>(v?.toLowerCase().indexOf(data) > -1)).length > 0).length;
+                return ![name, phone, question].filter(v=>exceptions.filter(data=>(v.toLowerCase().indexOf(data) > -1)).length > 0).length;
             }            
             try {
                 bot.telegram.sendMessage(telegramChatId,
