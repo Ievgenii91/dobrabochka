@@ -1,7 +1,0 @@
-TELEGRAM_BOT_TOKEN=1279819226:AAH21878c_XARFS90xY32daEtdvD0BQdAxk
-SMS_SENDER_NAME=DubVyroby
-SMS_TEMPLATE="ДубВироби. ТТН ::invoiceNumber.Дякуємо за покупку!"
-SMS_PASS=Portal123@@@
-SMS_LOGIN=admin_crashraze
-NP_API_KEY=04fef62f01f500d26102b73be1238bc6
-DB_URI=mongodb+srv://admin:LqEqJBqX3XWEbxN7@bncluster.q2jp4.mongodb.net/dobrabochka?retryWrites=true&w=majority

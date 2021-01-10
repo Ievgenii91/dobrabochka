@@ -1,7 +1,7 @@
 {
-  "name": "node-js-getting-started",
-  "version": "0.3.0",
-  "description": "A sample Node.js app using Express 4",
+  "name": "dobrabochka-helper-tool",
+  "version": "1.0.0",
+  "description": "Simple utility for internal purposes",
   "engines": {
     "node": "12.x"
   },

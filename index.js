@@ -60,7 +60,7 @@ async function init() {
                 return next();
             }
             function isFormDataValid(name = '', phone = '', question = '') {
-                const exceptions = ['henry', 'mike', 'заработок', 'http', 'viagra'];
+                const exceptions = ['henry', 'mike', 'заработок', 'http', 'viagra', 'helina'];
                 return ![name, phone, question].filter(v=>exceptions.filter(data=>(v.toLowerCase().indexOf(data) > -1)).length > 0).length;
             }            
             try {
