@@ -8,8 +8,8 @@ const headers = {
 
 class NovaPoshta {
 
-    async getInvoices(from, to) {
-        const apiKey = process.env.NP_API_KEY
+    async getInvoices(from, to, key) {
+        const apiKey = key || process.env.NP_API_KEY
         const methodProperties = {
             GetFullList: 1
         };
@@ -32,8 +32,8 @@ class NovaPoshta {
         });
     }
 
-    async getInvoicesForToday(from = new Date(), to = new Date()) {
-        return this.getInvoices(from, to)
+    async getInvoicesForToday(from = new Date(), to = new Date(), key) {
+        return this.getInvoices(from, to, key)
     }
 }
 

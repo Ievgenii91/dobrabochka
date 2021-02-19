@@ -20,6 +20,7 @@ MongoClient.connect(process.env.DB_URI, function (err, client) {
 })
 
 let prevMessageId = null
+let apiKey = process.env.NP_API_KEY;
 
 module.exports = () => {    
     const bot = new Telegraf(TELEGRAM_BOT_TOKEN)
@@ -49,7 +50,7 @@ module.exports = () => {
     bot.command('info', async ({reply}) => {
         let invoices = ''
         try {
-            let {data} = await npService.getInvoicesForToday()
+            let {data} = await npService.getInvoicesForToday(apiKey)
             if (data.success) {
                 const inv = data.data.map(v => new InvoiceModel(v))
                 inv.forEach(v => {
@@ -63,6 +64,24 @@ module.exports = () => {
         } catch (e) {
             return reply(`${e.message}`)
         }
+    })
+
+    bot.command('key', async ({ reply }) => {
+        if(apiKey === process.env.ANN_API_KEY) {
+            return reply(`Ключ ANN активний`)
+        } else {
+            return reply(`Ключ DIANA активний`)
+        }        
+    })
+
+    bot.command('ann', async ({ reply }) => {
+        apiKey = process.env.ANN_API_KEY
+        return reply(`Ключ ANN включено`)
+    })
+
+    bot.command('di', async ({ reply }) => {
+        apiKey = process.env.DIANA_NP_KEY
+        return reply(`Ключ DI включено`)
     })
 
     bot.command('go', async ({reply, update}) => {
