@@ -53,7 +53,7 @@ module.exports = () => {
     bot.command('info', async ({reply}) => {
         let invoices = ''
         try {
-            let {data} = await npService.getInvoicesForToday(apiKey)
+            let {data} = await npService.getInvoicesForToday(null, null, apiKey)
             if (data.success) {
                 const inv = data.data.map(v => new InvoiceModel(v))
                 inv.forEach(v => {
