@@ -105,7 +105,7 @@ module.exports = () => {
         let credits = 0
         try {
             credits = await soap.getBalance(cookie)
-            let {data} = await npService.getInvoicesForToday()
+            let {data} = await npService.getInvoicesForToday(null, null, apiKey)
 
             if (data.success) {
                 invoices = data.data.map(v => new InvoiceModel(v))
