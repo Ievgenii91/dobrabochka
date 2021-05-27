@@ -69,6 +69,7 @@ async function init() {
 				return next();
 			}
             const ip = requestIp.getClientIp(req);
+            const agent = req.headers['user-agent'];
             if(blockedIps.includes(ip)) {
                 return next();
             }
@@ -97,7 +98,7 @@ async function init() {
 					telegramChatId,
 					`CALLBACK!\nИмя: ${name || ''}\nIP: ${ip}\nТелефон: ${phone || ''}\nВопрос: ${
 						question || ''
-					}\nUrL:${url || ''}`
+					}\nUrL:${url || ''}\nagent: ${agent}`
 				);
 			} catch (e) {
 				console.error(e);
