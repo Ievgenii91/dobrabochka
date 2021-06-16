@@ -15,8 +15,8 @@ class NovaPoshta {
         };
 
         if(from && to) {
-            methodProperties.DateTimeFrom = moment(from).format('DD.MM.YYYY');
-            methodProperties.DateTimeTo = moment(to).format('DD.MM.YYYY');
+            methodProperties.DateTimeFrom = null; // moment(from).format('DD.MM.YYYY');
+            methodProperties.DateTimeTo = null; // moment(to).format('DD.MM.YYYY');
         }
 
         return axios({
