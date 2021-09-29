@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const ipfilter = require('express-ipfilter').IpFilter;
 const path = require('path');
 const PORT = process.env.PORT || 5000;
 const bodyParser = require('body-parser');
@@ -9,7 +10,8 @@ const initBot = require('./bot');
 
 let app = express();
 const telegramChatId = parseInt(process.env.CHAT_ID);
-const blockedIps = []; // TODO: add ips
+const blockedIps = process.env.IP_FILTER.split(','); // TODO: add ips
+
 
 async function init() {
 	const bot = initBot();
@@ -27,6 +29,7 @@ async function init() {
 	}
 
 	app
+		.use(ipfilter(blockedIps))
 		.use(bodyParser.json())
 		.use(bodyParser.urlencoded({ extended: false }))
 		.use(express.static(path.join(__dirname, 'public')))
